@@ -1,0 +1,124 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="【从0到1】CTF crypto方向萌新入门"><meta name="keywords" content="crypto,CINTA"><meta name="author" content="莫折眉"><meta name="copyright" content="莫折眉"><title>【从0到1】CTF crypto方向萌新入门 | M0D1.TOP</title><link rel="shortcut icon" href="/star.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.9.0"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css?version=1.9.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  hexoVersion: '5.4.0'
+} </script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="M0D1.TOP" type="application/atom+xml">
+</head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0-crypto%E7%AE%80%E4%BB%8B"><span class="toc-text"> 0. Crypto简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7"><span class="toc-text"> 1.常用工具：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#11-python"><span class="toc-text"> 1.1. Python</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#111%E5%B8%B8%E7%94%A8%E7%9A%84python%E5%BA%93"><span class="toc-text"> 1.1.1.常用的python库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-sagemath"><span class="toc-text"> 1.2. sagemath</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#121-%E5%B8%B8%E7%94%A8%E7%9A%84sage%E5%91%BD%E4%BB%A4"><span class="toc-text"> 1.2.1 常用的sage命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-linux"><span class="toc-text"> 1.3. Linux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-yafu"><span class="toc-text"> 1.4. yafu</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15openssl"><span class="toc-text"> 1.5.openSSL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-%E4%B8%80%E4%BA%9B%E8%A7%A3%E9%A2%98%E7%9B%B8%E5%85%B3%E7%BD%91%E9%A1%B5"><span class="toc-text"> 1.6. 一些解题相关网页</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E5%82%A8%E5%A4%87%E7%9F%A5%E8%AF%86"><span class="toc-text"> 2.储备知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#21%E6%95%B0%E5%AD%A6"><span class="toc-text"> 2.1.数学</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#22%E5%AF%86%E7%A0%81%E7%AE%97%E6%B3%95%E5%8F%8A%E5%85%B6%E7%9B%B8%E5%85%B3"><span class="toc-text"> 2.2.密码算法及其相关</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E5%81%9A%E9%A2%98tips"><span class="toc-text"> 3.做题Tips</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4%E5%B0%8F%E7%BB%93"><span class="toc-text"> 4.小结</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/starrycy.jpg"></div><div class="author-info__name text-center">莫折眉</div><div class="author-info__description text-center">星星之火，可以燎原</div><div class="follow-button"><a target="_blank" rel="noopener" href="https://www.marxists.org/chinese/">Follow Him</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">29</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">11</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">5</span></a></div><hr><div class="author-info-links"><div class="author-info-links__title text-center">友链</div><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://c10udlnk.top">c10udlnk</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://tover.xyz">Tover</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://fxizenta.cn/">Fxizenta</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://csomepro.github.io/">Csome</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://luo41.top">luo</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://mclsk888.top">McLaren</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://lnm011223.xyz">lnm011223</a><a class="author-info-links__name text-center" target="_blank" rel="noopener" href="https://dzcgood.xyz/">dzcgood</a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(/wukong.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">M0D1.TOP</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">主页</a><a class="site-page" href="/archives">总览</a><a class="site-page" href="/categories">分类</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/about">简介</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> 搜索</span></a></span></div><div id="post-info"><div id="post-title">【从0到1】CTF crypto方向萌新入门</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2021-11-16</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/math/">math</a><div class="post-meta-wordcount"><span>字数总计: </span><span class="word-count">1.6k</span><span class="post-meta__separator">|</span><span>阅读时长: 5 分钟</span></div></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h1 id="0-crypto简介"><a class="markdownIt-Anchor" href="#0-crypto简介"></a> 0. Crypto简介</h1>
+<p>如图所示</p>
+<img src="/2021/11/16/crypto021/image-20211117183516199.png" class="" title="image-20211117183516199">
+<span id="more"></span>
+<h1 id="1常用工具"><a class="markdownIt-Anchor" href="#1常用工具"></a> 1.常用工具：</h1>
+<p>下面列举的工具不一定是必须的，但有时间可以都安装一遍，因为学计算机需要”折腾“</p>
+<p>没给超链接的请自行搜索下载</p>
+<p>如果下载中遇到问题，可自行搜索解决方法或者在相关群上问</p>
+<h2 id="11-python"><a class="markdownIt-Anchor" href="#11-python"></a> 1.1. Python</h2>
+<p>做crypto题最常用的编程语言（可能没有之一</p>
+<p>建议 Python3 和 Python2 都安装</p>
+<p>个人目前使用频率比较高的是Python3</p>
+<h3 id="111常用的python库"><a class="markdownIt-Anchor" href="#111常用的python库"></a> 1.1.1.常用的python库</h3>
+<p>Crypto</p>
+<p>libnum</p>
+<p>gmpy2</p>
+<p>random</p>
+<p>hashlib</p>
+<p>pwn</p>
+<h2 id="12-sagemath"><a class="markdownIt-Anchor" href="#12-sagemath"></a> 1.2. sagemath</h2>
+<p>官方简介：</p>
+<blockquote>
+<p><em>SageMath</em> 是一个基于GPL协议的开源数学软件。它使用Python作为通用接口，将现有的许多开源软件包整合在一起，构建一个统一的计算平台。</p>
+<p>我们的目标：创建一个有活力的自由开源软件以替代Magma，Maple，Mathematica和Matlab。</p>
+</blockquote>
+<p>密码学离不开数学，一个功能超完善的计算平台对一个密码手来说无疑是很有吸引力的（意味着很多算法和相关代数结构不需要自己费心去写了</p>
+<p>官网/下载渠道：</p>
+<p><a target="_blank" rel="noopener" href="https://www.sagemath.org/">SageMath - Open-Source Mathematical Software System</a></p>
+<p>Linux也可以使用命令行安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install sagemath-jupter</span><br></pre></td></tr></table></figure>
+<h3 id="121-常用的sage命令"><a class="markdownIt-Anchor" href="#121-常用的sage命令"></a> 1.2.1 常用的sage命令</h3>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#求最大公因子/乘法逆元</span></span><br><span class="line">gcd(a,b)</span><br><span class="line">xgcd(e,phi)  </span><br><span class="line"></span><br><span class="line"><span class="comment">#解方程</span></span><br><span class="line">var(<span class="string">&#x27;p q&#x27;</span>)</span><br><span class="line">f1 = <span class="comment">#p和q的相关等式 == #得数</span></span><br><span class="line">f2 = <span class="comment">#p和q的相关等式 == #得数</span></span><br><span class="line">solve([<span class="type">f1</span>,<span class="type">f2</span>],p2,q2)</span><br><span class="line"></span><br><span class="line"><span class="comment">#构造矩阵/LLL算法</span></span><br><span class="line">A = matrix([[<span class="number">1</span>,<span class="type">h</span>],[<span class="number">0</span>,<span class="type">p</span>]])</span><br><span class="line">lll = A.LLL()</span><br></pre></td></tr></table></figure>
+<p>除此以外，还可以通过编写后缀名为.sage的文件（同时支持python和sagemath语法）来运行相关解题脚本</p>
+<p>编写完以后在命令行输入（我只在linux试过，windows不知道行不行）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sage xxx.sage</span><br></pre></td></tr></table></figure>
+<p>运行</p>
+<h2 id="13-linux"><a class="markdownIt-Anchor" href="#13-linux"></a> 1.3. Linux</h2>
+<p>Windows用户推荐wsl2或虚拟机，MacOS不太清楚</p>
+<h2 id="14-yafu"><a class="markdownIt-Anchor" href="#14-yafu"></a> 1.4. yafu</h2>
+<p>用于分解大整数，例如:</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\yafu<span class="literal">-x64</span>.exe <span class="string">&quot;factor(6)&quot;</span></span><br></pre></td></tr></table></figure>
+<p>类似功能的网站有</p>
+<p><a target="_blank" rel="noopener" href="http://factordb.com">factordb.com</a></p>
+<h2 id="15openssl"><a class="markdownIt-Anchor" href="#15openssl"></a> 1.5.openSSL</h2>
+<p>遇到题目附件的后缀名奇奇怪怪的，可能就需要用到这个了</p>
+<h2 id="16-一些解题相关网页"><a class="markdownIt-Anchor" href="#16-一些解题相关网页"></a> 1.6. 一些解题相关网页</h2>
+<p><a target="_blank" rel="noopener" href="http://xn--factordb-k39l624agnah40etv5ar0eyb4177bea2730gpu9b.com">上面提到的分解大整数的factordb.com</a></p>
+<p>还有词频分析、编码解码、RSA解题套路整合等等……</p>
+<p>（链接就不贴了，做题过程中收集就足够了，也可以私聊我要）</p>
+<h1 id="2储备知识"><a class="markdownIt-Anchor" href="#2储备知识"></a> 2.储备知识</h1>
+<p>先推荐一些书：</p>
+<p>①《具体数论与代数》</p>
+<p>强推！</p>
+<p>大名鼎鼎的<strong>CINTA</strong>！</p>
+<p>bintou老师的大作！</p>
+<p>华师网工大二上学期的专业选修”面向信息时代的计算机数学“的教材！</p>
+<p>里面涉及的数学知识和代码都非常友好，必看必看，常看常新。</p>
+<p>可以自学，不懂可以线上问我（不能线下问的原因是有些点我也忘了，需要时间自己过一遍）</p>
+<p>冲冲冲</p>
+<p>②《图解密码技术》</p>
+<p>密码学科普类书籍，挺好看的，可以用于培养兴趣</p>
+<p>③《密码编码学与网络安全》</p>
+<p>华师网工大三上学期的专业选修”计算机安全学“的教材</p>
+<p>大部头书，想系统了解密码学的可以看</p>
+<p>下面列举下做crypto可能用到的知识或者算法，具体内容可以通过看上面的书/上网搜索 等方式学习</p>
+<h2 id="21数学"><a class="markdownIt-Anchor" href="#21数学"></a> 2.1.数学</h2>
+<p>密码学离不开数学。</p>
+<p>因为加密与解密离不开计算机，而计算机本质上是一个离散结构，只能处理离散的数量关系，所以离散数学不可或缺。</p>
+<p>离散数学是非常大的一块，CTF crytpo题中常涉及的是<strong>数论</strong>和<strong>抽象代数</strong></p>
+<p>比如：</p>
+<p>威尔逊定理</p>
+<p><strong>欧拉定理</strong></p>
+<p>费马小定理</p>
+<p><strong>中国剩余定理（CRT）</strong></p>
+<p>拓展中国剩余定理（extend CRT）</p>
+<p>还有<strong>群</strong>环域格等代数结构及其相关内容</p>
+<h2 id="22密码算法及其相关"><a class="markdownIt-Anchor" href="#22密码算法及其相关"></a> 2.2.密码算法及其相关</h2>
+<p>首先是一些入门的编码：ASCII，base64等……</p>
+<p>值得一提的是，Crypto库里的 bytes_to_long 和 long_to_bytes 很常用，萌新们务必搞清楚它在做什么</p>
+<p>然后是古典密码，比如摩尔斯电码，栅栏密码、凯撒密码、猪圈秘密、棋盘密码、培根密码、维吉尼亚密码等很多，还有一些XXencode、UUencode、brainfuck等知道了就肯定会的靠经验的密码或编码，这些网上都能找到</p>
+<p>再之后是RC4，DES,AES, 哈希，DH密钥交换，<strong>RSA</strong>，ECC，格密码等等</p>
+<p>……</p>
+<p>crypto常用算法有：</p>
+<p>线性同余方法（lcg）</p>
+<p><strong>欧几里得算法（gcd）</strong></p>
+<p><strong>拓展欧几里得算法（extend gcd）</strong></p>
+<p>小步大步算法（bsgs）</p>
+<p>拓展小步大步算法（extend bsge）</p>
+<p>费马因式分解</p>
+<p>CopperSmith方法</p>
+<p>等等……</p>
+<h1 id="3做题tips"><a class="markdownIt-Anchor" href="#3做题tips"></a> 3.做题Tips</h1>
+<p>做题的时候</p>
+<p>首先从标题、描述、附件等判断是哪一类的密码，然后再对症下药</p>
+<p>萌新上路可以从常见的编码和古典密码开始，之后就可以涉猎对称和非对称了。</p>
+<p>对称密码的话，AES及其五种工作模式（ECB,CBC,CFB,OFB,CTR）是绕不开的；非对称的话肯定是从<strong>RSA</strong>开始了。</p>
+<p>题目附件里的代码常有如下字样</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> flag</span><br></pre></td></tr></table></figure>
+<p>可以理解成出题人把flag藏在secret这个私有库里了，这样的代码不能直接运行（所以不要下载所谓的secret库运行它）</p>
+<p>需要做题人通过分析代码里面的加密方式还原出flag</p>
+<p>在某些题目中，虽然代码本身运行不了，但是某些函数却可以利用（术语：oracle），解密时可以直接挪用到自己的解题脚本上运行。</p>
+<h1 id="4小结"><a class="markdownIt-Anchor" href="#4小结"></a> 4.小结</h1>
+<p>•学会搜索</p>
+<p>•克服畏难心理，很多题不需要完全懂里面的数学原理也能做</p>
+<p>•平时多收集各类脚本/网页，解题事半功倍</p>
+<p>•兴趣是最好的老师，心情次之。没有兴趣或许可以换个方向:-)，没心情做题可以歇会</p>
+<p>•某些杂项题和密码题只涉及词频分析、编码、古典密码、流密码，少有对数理知识和读写代码能力的要求，但却很考验大家的脑洞，而个人的脑洞是有限的，所以建议团队协作</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">莫折眉</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://m0d1.top/2021/11/16/crypto021/">https://m0d1.top/2021/11/16/crypto021/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://m0d1.top">M0D1.TOP</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/crypto/">crypto</a><a class="post-meta__tags" href="/tags/CINTA/">CINTA</a></div><div class="social-share pull-right" data-disabled="google,twitter,linkedin,facebook,diandian"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/2021/11/19/IMCchapter5/"><i class="fa fa-chevron-left">  </i><span>组合数学、概率论与信息论</span></a></div><div class="next-post pull-right"><a href="/2021/11/05/aboutlinux/"><span>linux-系统调用和进程通信</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer class="footer-bg" style="background-image: url(/wukong.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2021 - 2022 By 莫折眉</div><div class="framework-info"><span>驱动 - </span><a target="_blank" rel="noopener" href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="footer_custom_text">君子和而不同。</div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.0"></script><script src="/js/fancybox.js?version=1.9.0"></script><script src="/js/sidebar.js?version=1.9.0"></script><script src="/js/copy.js?version=1.9.0"></script><script src="/js/fireworks.js?version=1.9.0"></script><script src="/js/transition.js?version=1.9.0"></script><script src="/js/scroll.js?version=1.9.0"></script><script src="/js/head.js?version=1.9.0"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script src="/js/katex.js"></script><script src="/js/search/local-search.js"></script><script id="ribbon" src="/js/third-party/canvas-ribbon.js" size="100" alpha="0.4" zIndex="-1" data-click="true"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
